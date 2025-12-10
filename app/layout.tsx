@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     'Arif',
     'Aliyan Developer',
     'Aliyan Full Stack Developer',
+    'Aliyan Arif Full Stack Developer',
     'Full Stack Developer',
     'MERN Developer',
     'React Developer',
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
     title: 'Aliyan Arif | Full-Stack Web Developer',
     description: 'Full-stack web developer with expertise in React, Next.js, Node.js, and MongoDB.',
     creator: '@yourhandle',
-    images: ['/twitter-image.jpg'],
+    images: ['/logo.png'],
   },
   viewport: {
     width: 'device-width',
@@ -88,7 +89,7 @@ export const metadata: Metadata = {
     yahoo: 'your-yahoo-verification',
   },
   alternates: {
-    canonical: 'https://yourdomain.com',
+    canonical: 'https://aliyan-portfolio-website.vercel.app',
   },
 };
 

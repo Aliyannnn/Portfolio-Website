@@ -12,6 +12,16 @@ export const projects = [
     image: "/Projects_Screenshots/Store_It/1.jpg",
   },
   {
+    title: "Netco Digital | Internet Service Provider",
+    description: "Professional portfolio website for a digital agency showcasing services, projects, and client testimonials.",
+    badges: ["Next.js", "Appwrite", "Tailwind", "React"],
+    grant: null,
+    links: {
+      live: "https://netco-digital.vercel.app/",
+    },
+    image: "/Projects_Screenshots/Store_It/1.jpg",
+  },
+  {
     title: "HireGenius | AI Resume Analyzer",
     description: "AI-powered tool to analyze resumes, provide feedback, and improve job applications with actionable insights.",
     badges: ["Next.js", "OpenAI", "Tailwind", "TypeScript"],
