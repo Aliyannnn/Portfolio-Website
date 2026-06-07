@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 
+const baseUrl = 'https://aliyan-portfolio-website.vercel.app'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
@@ -7,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/', '/admin/'],
     },
-    sitemap: '',
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   }
-} 
+}

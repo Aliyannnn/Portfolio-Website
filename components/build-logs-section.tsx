@@ -114,23 +114,29 @@ export default function BuildLogsSection() {
   }
 
   return (
-    <section id="build-logs" className="py-20 md:py-32">
+    <section id="build-logs" className="relative overflow-hidden py-20 md:py-32">
+      {/* Atmosphere */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute right-1/4 top-20 h-[360px] w-[480px] max-w-full rounded-full bg-[radial-gradient(ellipse_at_center,hsl(var(--chart-2)/0.07),transparent_70%)] blur-3xl" />
+      </div>
+
       <div className="container max-w-5xl">
         {/* Centered Heading */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <h2 className="text-5xl font-bold">
-              <span className="font-mono text-primary">#</span> Build Logs
-            </h2>
-            <Terminal className="text-chart-2 h-8 w-8" />
-          </div>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+        <div className="mb-12 text-center">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/50 px-4 py-1.5 font-mono text-xs text-muted-foreground backdrop-blur">
+            <Terminal className="h-3.5 w-3.5 text-chart-2" />
+            git log --journey
+          </span>
+          <h2 className="text-4xl font-bold tracking-tight md:text-5xl">
+            <span className="font-mono text-primary">#</span> Build Logs
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             Raw, unfiltered updates from my dev journey. Real projects, real challenges, real progress.
           </p>
         </div>
 
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
@@ -169,57 +175,76 @@ export default function BuildLogsSection() {
         </div>
 
         {/* Logs */}
-        <div className="space-y-6">
+        <div className="relative space-y-5 border-l border-border/40 pl-5 sm:pl-8">
           {filteredLogs.map((log, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="relative"
             >
+              {/* timeline node */}
+              <span
+                className={cn(
+                  "absolute top-6 h-3 w-3 rounded-full border-2 border-background",
+                  "-left-[27px] sm:-left-[39px]",
+                  log.status === "completed" && "bg-green-500",
+                  log.status === "in-progress" && "bg-blue-500 animate-glow-pulse",
+                  log.status === "planned" && "bg-yellow-500",
+                  !log.status && "bg-primary"
+                )}
+              />
               <Card
-                className="bg-card/70 backdrop-blur transition-all duration-300 hover:border-primary/30 cursor-pointer"
+                className="group relative cursor-pointer overflow-hidden bg-card/60 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40"
                 onClick={() => setSelectedLog(log)}
               >
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start">
-                    <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                      <CalendarIcon className="h-4 w-4" />
+                <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/[0.05] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <CardHeader className="relative pb-2">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+                      <CalendarIcon className="h-3.5 w-3.5" />
                       <span>{formatDate(log.date)}</span>
+                      <span className="text-primary/50">·</span>
+                      <span className="text-primary/70">
+                        #{(filteredLogs.length - index).toString().padStart(3, "0")}
+                      </span>
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap justify-end gap-2">
                       {log.status && (
                         <Badge
                           variant="outline"
-                          className={cn("text-xs", getStatusColor(log.status))}
+                          className={cn("font-mono text-[10px]", getStatusColor(log.status))}
                         >
                           {log.status}
                         </Badge>
                       )}
-
                       {log.project && (
-                        <Badge
-                          variant="outline"
-                          className="text-xs"
-                        >
+                        <Badge variant="outline" className="font-mono text-[10px]">
                           {log.project}
                         </Badge>
                       )}
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold mt-2">{log.title}</h3>
+                  <h3 className="mt-2 text-lg font-semibold transition-colors group-hover:text-primary">
+                    {log.title}
+                  </h3>
                 </CardHeader>
 
-                <CardContent>
-                  <p className="text-muted-foreground whitespace-pre-line line-clamp-3">{log.content}</p>
+                <CardContent className="relative">
+                  <p className="line-clamp-2 whitespace-pre-line text-sm text-muted-foreground">
+                    {log.content}
+                  </p>
                 </CardContent>
 
-                <CardFooter>
-                  <div className="flex flex-wrap gap-2">
+                <CardFooter className="relative">
+                  <div className="flex flex-wrap gap-1.5">
                     {log.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
+                      <Badge key={tag} variant="secondary" className="font-mono text-[10px]">
+                        {tag}
+                      </Badge>
                     ))}
                   </div>
                 </CardFooter>

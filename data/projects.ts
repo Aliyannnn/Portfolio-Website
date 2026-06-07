@@ -10,7 +10,7 @@ export const projects = [
       github: "",
       live: "https://aurumtechrefinery.com/",
     },
-    image: "/Projects_Screenshots/aurumtech/1.jpg",
+    image: "/Projects_Screenshots/Aurumtech/1.jpg",
   }
   ,
   {
@@ -23,7 +23,7 @@ export const projects = [
       github: "",
       live: "https://www.netcodigitel.com/",
     },
-    image: "/Projects_Screenshots/necto_digitel/1.jpg",
+    image: "/Projects_Screenshots/Necto_digitel/1.jpg",
   }
   ,
   {

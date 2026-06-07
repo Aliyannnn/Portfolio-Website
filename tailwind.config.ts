@@ -92,11 +92,38 @@ const config = {
   				to: {
   					height: '0'
   				}
+  			},
+  			marquee: {
+  				from: {
+  					transform: 'translateX(0)'
+  				},
+  				to: {
+  					transform: 'translateX(-50%)'
+  				}
+  			},
+  			float: {
+  				'0%, 100%': {
+  					transform: 'translateY(0)'
+  				},
+  				'50%': {
+  					transform: 'translateY(-8px)'
+  				}
+  			},
+  			'glow-pulse': {
+  				'0%, 100%': {
+  					opacity: '0.4'
+  				},
+  				'50%': {
+  					opacity: '0.8'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			marquee: 'marquee 28s linear infinite',
+  			float: 'float 6s ease-in-out infinite',
+  			'glow-pulse': 'glow-pulse 4s ease-in-out infinite'
   		}
   	}
   },

@@ -138,17 +138,17 @@ export default function Header() {
                 </Link>
               ))}
               <div className="flex items-center space-x-2 pt-2 border-t border-border">
-                <a href="https://github.com/pratikkale26" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <a href="https://github.com/Aliyannnn" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                   <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
                     <GithubIcon className="h-4 w-4" />
                   </Button>
                 </a>
-                <a href="https://twitter.com/pratikkale26" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <a href="https://x.com/Aliyann712709" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                   <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
                     <TwitterIcon className="h-4 w-4" />
                   </Button>
                 </a>
-                <a href="https://linkedin.com/in/pratikkale26" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/aliyan-arif-9b4179377/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
                     <LinkedinIcon className="h-4 w-4" />
                   </Button>

@@ -2,58 +2,91 @@ import Link from "next/link"
 import { Github, Linkedin, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+const quickLinks = [
+  { href: "/", label: "Home" },
+  { href: "#projects", label: "Projects" },
+  { href: "#build-logs", label: "Build Logs" },
+  { href: "#contact", label: "Contact" },
+]
+
+const socials = [
+  { href: "https://github.com/Aliyannnn", label: "GitHub", Icon: Github },
+  { href: "https://x.com/Aliyann712709", label: "Twitter", Icon: Twitter },
+  { href: "https://www.linkedin.com/in/aliyan-arif-9b4179377/", label: "LinkedIn", Icon: Linkedin },
+]
+
 export default function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="container py-8 md:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="relative overflow-hidden border-t border-border/60">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+
+      <div className="container py-12 md:py-16">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
-            <h3 className="text-lg font-semibold mb-4">Aliyan Arif</h3>
-            <p className="text-muted-foreground max-w-md">
-              Full Stack Web Developer passionate about building modern, scalable, and user-friendly applications.
+            <h3 className="mb-3 text-lg font-semibold">
+              <span className="font-mono text-primary">~</span>/Aliyan Arif
+            </h3>
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+              Full Stack Web Developer passionate about building modern, scalable,
+              and user-friendly applications.
+            </p>
+            <p className="mt-4 inline-flex items-center gap-2 font-mono text-xs text-muted-foreground">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              open to opportunities
             </p>
           </div>
-          
+
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="mb-4 font-mono text-sm text-muted-foreground">$ quick-links</h3>
             <ul className="space-y-2">
-              <li><Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link></li>
-              <li><Link href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</Link></li>
-              <li><Link href="#logs" className="text-muted-foreground hover:text-foreground transition-colors">Build Logs</Link></li>
-              <li><Link href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link></li>
+              {quickLinks.map((l) => (
+                <li key={l.label}>
+                  <Link
+                    href={l.href}
+                    className="group inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <span className="mr-2 text-primary/50 transition-transform group-hover:translate-x-0.5">
+                      ›
+                    </span>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          
+
           <div>
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              <a href="https://github.com/Aliyannnn" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-                  <Github className="h-5 w-5" />
-                </Button>
-              </a>
-              <a href="https://x.com/Aliyann712709" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-                  <Twitter className="h-5 w-5" />
-                </Button>
-              </a>
-              <a href="https://www.linkedin.com/in/aliyan-arif-9b4179377" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-                  <Linkedin className="h-5 w-5" />
-                </Button>
-              </a>
+            <h3 className="mb-4 font-mono text-sm text-muted-foreground">$ connect</h3>
+            <div className="flex space-x-3">
+              {socials.map(({ href, label, Icon }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="border border-border/50 bg-card/40 text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </Button>
+                </a>
+              ))}
             </div>
             <div className="mt-4">
-              <a href="mailto:your@email.com" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a
+                href="mailto:aliyan989pc@gmail.com"
+                className="font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
                 aliyan989pc@gmail.com
               </a>
             </div>
           </div>
         </div>
-        
-        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+
+        <div className="mt-10 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Aliyan Arif. All rights reserved.</p>
-          <p className="mt-1 font-mono text-xs">Built with Next.js, Tailwind, and shadcn/ui</p>
+          <p className="mt-1 font-mono text-xs">
+            <span className="text-primary/60">{"<"}</span> Built with Next.js, Tailwind, and shadcn/ui{" "}
+            <span className="text-primary/60">{"/>"}</span>
+          </p>
         </div>
       </div>
     </footer>

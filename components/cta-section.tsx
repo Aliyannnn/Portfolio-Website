@@ -44,27 +44,37 @@ export default function CTASection() {
   }
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-accent/10">
+    <section id="contact" className="relative overflow-hidden py-20 md:py-32">
+      {/* Atmosphere */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-accent/10 via-transparent to-transparent" />
+        <div className="absolute bottom-0 left-1/2 h-[400px] w-[700px] max-w-full -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_70%)] blur-3xl" />
+      </div>
+
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="container max-w-5xl">
+      <div className="container relative z-10 max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="text-center mb-10">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+          <div className="mb-10 text-center">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/50 px-4 py-1.5 font-mono text-xs text-muted-foreground backdrop-blur">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              ./contact --connect
+            </span>
+            <h2 className="text-4xl font-bold tracking-tight md:text-5xl">Get in Touch</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
               Have a project idea, collaboration opportunity, or just want to chat about Web and technology?
               I&apos;m always open to connecting with fellow builders and creators.
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-10">
+          <div className="flex flex-col gap-8 md:flex-row md:gap-10">
             {/* Left Contact Options */}
             <div className="md:w-5/12">
-              <Card className="h-full bg-card/70 backdrop-blur">
+              <Card className="h-full border-border/50 bg-card/60 backdrop-blur-xl">
                 <CardHeader>
                   <CardTitle>Connect with Me</CardTitle>
                   <CardDescription>Choose how you&apos;d like to reach out</CardDescription>
@@ -133,7 +143,7 @@ export default function CTASection() {
 
             {/* Right Form Section */}
             <div className="md:w-7/12">
-              <Card className="bg-card/70 backdrop-blur">
+              <Card className="border-border/50 bg-card/60 backdrop-blur-xl">
                 <form onSubmit={handleSubmit}>
                   <CardHeader>
                     <div className="flex border border-border rounded-lg p-1 mb-4">

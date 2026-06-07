@@ -1,22 +1,30 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Fira_Code } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 
-const inter = Inter({ 
+const SITE_URL = 'https://aliyan-portfolio-website.vercel.app';
+
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
 });
 
 const firaCode = Fira_Code({
   subsets: ['latin'],
   variable: '--font-fira',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'Aliyan Arif | Full-Stack Web Developer',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Aliyan Arif | Full-Stack Web Developer',
+    template: '%s | Aliyan Arif',
+  },
   description: 'Full-stack web developer with expertise in building modern, scalable, and user-friendly web applications using React, Next.js, Node.js, and MongoDB.',
   icons: {
     icon: '/favicon.ico',
@@ -58,10 +66,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://yourdomain.com',
+    url: SITE_URL,
     title: 'Aliyan Arif | Full-Stack Web Developer',
     description: 'Full-stack web developer specializing in React, Next.js, Node.js, and MongoDB. Passionate about building modern and scalable web apps.',
-    siteName: 'Aliyan Portfolio',
+    siteName: 'Aliyan Arif Portfolio',
     images: [
       {
         url: '/logo.png',
@@ -75,22 +83,21 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aliyan Arif | Full-Stack Web Developer',
     description: 'Full-stack web developer with expertise in React, Next.js, Node.js, and MongoDB.',
-    creator: '@yourhandle',
+    creator: '@Aliyann712709',
     images: ['/logo.png'],
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
-  verification: {
-    google: 'your-google-site-verification',
-    yandex: 'your-yandex-verification',
-    yahoo: 'your-yahoo-verification',
-  },
   alternates: {
-    canonical: 'https://aliyan-portfolio-website.vercel.app',
+    canonical: SITE_URL,
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
 };
 
 
@@ -99,15 +106,37 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Aliyan Arif',
+    url: SITE_URL,
+    jobTitle: 'Full-Stack Web Developer',
+    description:
+      'Full-stack web developer specializing in React, Next.js, Node.js, and MongoDB.',
+    image: `${SITE_URL}/logo.png`,
+    sameAs: [
+      'https://github.com/Aliyannnn',
+      'https://www.linkedin.com/in/aliyan-arif-9b4179377/',
+      'https://x.com/Aliyann712709',
+    ],
+    knowsAbout: [
+      'React',
+      'Next.js',
+      'Node.js',
+      'MongoDB',
+      'TypeScript',
+      'Full-Stack Web Development',
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
-      </head>
       <body className={`${inter.variable} ${firaCode.variable} font-sans bg-background text-foreground min-h-screen`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider 
           attribute="class" 
           defaultTheme="dark" 
